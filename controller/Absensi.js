@@ -11,7 +11,7 @@ const TambahAbsensi = async (req, res) => {
       absen: body.absen,
       keterangan: body.keterangan,
       idPengguna: idPengguna,
-      tanggal: body.tanggal,
+      // tanggal: body.tanggal,
     });
     const pivotnya = await Pivot.create({
       idPengguna: idPengguna,

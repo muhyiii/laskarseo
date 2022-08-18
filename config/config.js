@@ -8,7 +8,7 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    timeZone: "+07:00",
+
   },
   test: {
     username: process.env.DB_USERNAME,
@@ -23,7 +23,7 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    timeZone: "+07:00",
+    timeZone: process.env.TZ,
     dialectOptions: {
       ssl: {
         require: true,
