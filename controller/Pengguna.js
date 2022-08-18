@@ -34,7 +34,7 @@ const DaftarPengguna = async (req, res) => {
     console.log(error);
     res.status(403).json({
       status: "Gagal",
-      messege: "Ada Kesalahan",
+      messege: `Ada Kesalahannn + ${error}`,
     });
   }
 };
