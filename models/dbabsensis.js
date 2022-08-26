@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "Pengguna",
         foreignKey: "idAbsensi",
       });
+      dbAbsensis.belongsTo(models.dbPenggunas, {
+        as: "pengguna",
+        foreignKey: "id",
+      });
     }
   }
   dbAbsensis.init(

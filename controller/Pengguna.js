@@ -1,5 +1,6 @@
 const ModelPengguna = require("../models").dbPenggunas;
 const ModelAbsensi = require("../models").dbAbsensis;
+const ModelStat = require("../models").statusAbsensis;
 const bcrypt = require("bcrypt");
 
 const DaftarPengguna = async (req, res) => {
@@ -25,7 +26,13 @@ const DaftarPengguna = async (req, res) => {
       role: body.role,
       gender: body.gender,
     });
+    const stat = await ModelStat.create({
+      idPengguna: user.id,
+
+      stat: "DEFAULT",
+    });
     console.log(user);
+    console.log(stat);
     res.status(201).json({
       messege: "Register Akun LASKARSEO App Berhasil",
       user,
@@ -112,7 +119,7 @@ const DataSemuaPengguna = async (req, res) => {
         {
           model: ModelAbsensi,
           require: true,
-          as: "Absensi",
+          as: "absen",
 
           attributes: ["absen", "keterangan", "createdAt"],
         },

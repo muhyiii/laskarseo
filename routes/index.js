@@ -3,6 +3,8 @@ const {
   TambahAbsensi,
   DataAbsensiPerPengguna,
   TelatAbsen,
+  DefaultAbsen,
+  CekAbsen,
 } = require("../controller/Absensi");
 const {
   DaftarPengguna,
@@ -15,10 +17,36 @@ const validationMiddleware = require("../middleware/akunMiddleware");
 const { akunValidator } = require("../validator/akunValidator");
 const schedule = require("node-schedule");
 const router = express.Router();
-const rule = new schedule.RecurrenceRule();
-rule.hour = 10;
 
-// schedule.scheduleJob("1 * * * * *", TelatAbsen);
+const telat = schedule.scheduleJob(
+  {
+    hour: 8,
+    minute: 5,
+    dayOfWeek: [5, new schedule.Range(1, 4)],
+    tz: "Asia/Jakarta",
+  },
+  TelatAbsen
+);
+
+const jadiDef = schedule.scheduleJob(
+  {
+    hour: 5,
+    minute: 15,
+    dayOfWeek: [5, new schedule.Range(1, 4)],
+    tz: "Asia/Jakarta",
+  },
+  DefaultAbsen
+);
+
+//  schedule.scheduleJob(rule, DefaultAbsen);
+
+// () => {
+//   var aestTime = new Date().toLocaleString("id", {timeZone: "Asia/Jakarta"});
+//   const date = Date();
+//   console.log('================================================');
+//   console.log(rule);
+//   console.log(aestTime);
+// };
 
 router.get("/", (req, res) => {
   return res.json({
@@ -42,6 +70,7 @@ router.put("/akun/pengguna/:idPengguna/tambah-panggilan", TambahPanggilan);
 router.get("/akun/pengguna/:idPengguna", DataPerPengguna);
 
 // ABSENSI
+router.get('/akun/pengguna/:idPengguna/cek-absen',CekAbsen)
 router.post("/akun/pengguna/:idPengguna/absensi/tambah-absensi", TambahAbsensi);
 router.get("/akun/pengguna/:idPengguna/absensi", DataAbsensiPerPengguna);
 

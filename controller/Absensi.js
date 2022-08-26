@@ -1,6 +1,7 @@
 const ModelAbsensi = require("../models").dbAbsensis;
 const Pivot = require("../models").pivotAbsensis;
 const ModelPengguna = require("../models").dbPenggunas;
+const ModelStat = require("../models").statusAbsensis;
 
 const TambahAbsensi = async (req, res) => {
   try {
@@ -17,6 +18,15 @@ const TambahAbsensi = async (req, res) => {
       idPengguna: idPengguna,
       idAbsensi: absent.id,
     });
+
+    await ModelStat.update(
+      { stat: body.absen },
+      {
+        where: {
+          idPengguna: idPengguna,
+        },
+      }
+    );
     console.log(absent);
     console.log(pivotnya);
     res.status(200).json({
@@ -40,7 +50,7 @@ const DataAbsensiPerPengguna = async (req, res) => {
     });
     if (dataAbsensi === null || dataAbsensi === 0) {
       return res.json({
-        messege: `Data Absensi Pengguna  Tidak Ditemukan`,
+        messege: `Data Absensi Pengguna Tidak Ditemukan`,
       });
     }
     return res.json({
@@ -56,6 +66,28 @@ const DataAbsensiPerPengguna = async (req, res) => {
   }
 };
 
+const CekAbsen = async (req, res) => {
+  try {
+    const { idPengguna } = req.params;
+    const isAbsen = await ModelStat.findByPk(idPengguna,{attributes :['stat']});
+    if (isAbsen === null || isAbsen === 0) {
+      return res.json({
+        messege: `Data Status Pengguna Tidak Ditemukan`,
+      });
+    }
+    return res.json({
+      messege: "Berhasil Cek Status",
+      isAbsen
+    });
+  } catch {
+    console.log(error);
+    res.status(403).json({
+      status: "Gagal",
+      messege: "Ada Kesalahan",
+    });
+  }
+};
+
 const TelatAbsen = async (req, res) => {
   try {
     var time = new Date();
@@ -63,47 +95,52 @@ const TelatAbsen = async (req, res) => {
     // const dataAbsensi = await ModelAbsensi.findAll({
     //   attributes: ["absen", "keterangan", "tanggal"],
     // });
-    const dataUser = await ModelPengguna.findAll({
-      attributes: ["id", "nama", "username", "panggilan", "gender", "role"],
-      include: [
-        {
-          model: ModelAbsensi,
-          require: true,
-          as: "Absensi",
-
-          attributes: ["absen", "keterangan", "createdAt"],
-        },
-      ],
-    });
-
-    dataUser.map((e) => {
-      // if (e.Absensi === []) {
-      //   console.log(dataUser[e] + "kurang data");
-      // }
-      console.log(e.Absensi.e.tanggal.toLocaleDateString('id') === time.toLocaleDateString('id'));
-    });
-    // // var et;
-    // dataAbsensi.map(async (e) => {
-    //   // if (e.tanggal.toLocaleDateString() === Date().toLocaleDateString())
-    //   console.log(e.tanggal.toLocaleDateString("id"));
-    //   console.log(time.toLocaleDateString("id"));
-    //   console.log(e.absen);
-
-    //   // if (e.tanggal.toLocaleDateString("id") !== time.toLocaleDateString("id"))
-    //   //   await ModelAbsensi.create({
-    //   //     absen: "TANPA KETERANGAN",
-
-    //   //     idPengguna: e.id,
-    //   //     tanggal: time,
-    //   //   });
-    // });
-    // for (let index = 0; index < dataAbsensi.length; index++) {
-    //   const element = array[index];
-    //   console.log(element.absen);
-    // }
-    // console.log(dataAbsensi);
-    // console.log(dataUser);
-    console.log("asdas");
+    const telat = await ModelStat.findAll({ where: { stat: "DEFAULT" } });
+    // console.log(
+    //   test("should first", () => {
+    //     second;
+    //   })
+    // );
+    // console.log("asdas");
+    await Promise.all(
+      telat.map(async (data) => {
+        console.log(data);
+        const baru = await ModelAbsensi.create({
+          absen: "TANPA KETERANGAN",
+          idPengguna: data.idPengguna,
+          keterangan: "",
+          tanggal: time,
+        });
+        console.log(baru);
+      })
+    );
   } catch (error) {}
 };
-module.exports = { TambahAbsensi, DataAbsensiPerPengguna, TelatAbsen };
+
+const DefaultAbsen = async (req, res) => {
+  try {
+    const def = await ModelStat.findAll();
+    await Promise.all(
+      def.map(async (data) => {
+        const jadiDef = await ModelStat.update(
+          {
+            stat: "DEFAULT",
+          },
+          {
+            where: {
+              idPengguna: data.idPengguna,
+            },
+          }
+        );
+        console.log(jadiDef);
+      })
+    );
+  } catch (error) {}
+};
+module.exports = {
+  TambahAbsensi,
+  DataAbsensiPerPengguna,
+  CekAbsen,
+  TelatAbsen,
+  DefaultAbsen,
+};
