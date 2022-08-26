@@ -69,7 +69,10 @@ const DataAbsensiPerPengguna = async (req, res) => {
 const CekAbsen = async (req, res) => {
   try {
     const { idPengguna } = req.params;
-    const isAbsen = await ModelStat.findByPk(idPengguna,{attributes :['stat']});
+    const isAbsen = await ModelStat.findAll({
+      where: { idPengguna: idPengguna },
+      attributes: ["stat"],
+    });
     if (isAbsen === null || isAbsen === 0) {
       return res.json({
         messege: `Data Status Pengguna Tidak Ditemukan`,
@@ -77,7 +80,7 @@ const CekAbsen = async (req, res) => {
     }
     return res.json({
       messege: "Berhasil Cek Status",
-      isAbsen
+      isAbsen,
     });
   } catch {
     console.log(error);
