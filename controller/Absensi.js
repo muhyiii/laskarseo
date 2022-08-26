@@ -69,8 +69,7 @@ const DataAbsensiPerPengguna = async (req, res) => {
 const CekAbsen = async (req, res) => {
   try {
     const { idPengguna } = req.params;
-    const isAbsen = await ModelStat.findAll({
-      where: { idPengguna: idPengguna },
+    const isAbsen = await ModelStat.findByPk(idPengguna, {
       attributes: ["stat"],
     });
     if (isAbsen === null || isAbsen === 0) {
@@ -95,16 +94,8 @@ const TelatAbsen = async (req, res) => {
   try {
     var time = new Date();
 
-    // const dataAbsensi = await ModelAbsensi.findAll({
-    //   attributes: ["absen", "keterangan", "tanggal"],
-    // });
     const telat = await ModelStat.findAll({ where: { stat: "DEFAULT" } });
-    // console.log(
-    //   test("should first", () => {
-    //     second;
-    //   })
-    // );
-    // console.log("asdas");
+ 
     await Promise.all(
       telat.map(async (data) => {
         console.log(data);
