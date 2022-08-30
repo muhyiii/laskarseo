@@ -17,18 +17,17 @@ const validationMiddleware = require("../middleware/akunMiddleware");
 const { akunValidator } = require("../validator/akunValidator");
 const schedule = require("node-schedule");
 const router = express.Router();
-
-const telat = schedule.scheduleJob(
+schedule.scheduleJob(
   {
-    hour: 8,
-    minute: 5,
+    hour: 9,
+    minute: 30,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
   TelatAbsen
 );
 
-const jadiDef = schedule.scheduleJob(
+schedule.scheduleJob(
   {
     hour: 5,
     minute: 15,
@@ -70,7 +69,7 @@ router.put("/akun/pengguna/:idPengguna/tambah-panggilan", TambahPanggilan);
 router.get("/akun/pengguna/:idPengguna", DataPerPengguna);
 
 // ABSENSI
-router.get('/akun/pengguna/:idPengguna/cek-absen',CekAbsen)
+router.get("/akun/pengguna/:idPengguna/cek-absen", CekAbsen);
 router.post("/akun/pengguna/:idPengguna/absensi/tambah-absensi", TambahAbsensi);
 router.get("/akun/pengguna/:idPengguna/absensi", DataAbsensiPerPengguna);
 
