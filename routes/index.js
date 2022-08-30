@@ -19,8 +19,8 @@ const schedule = require("node-schedule");
 const router = express.Router();
 schedule.scheduleJob(
   {
-    hour: 9,
-    minute: 30,
+    hour: 8,
+    minute: 10,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
