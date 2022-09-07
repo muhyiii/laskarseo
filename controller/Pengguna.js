@@ -2,6 +2,7 @@ const ModelPengguna = require("../models").dbPenggunas;
 const ModelAbsensi = require("../models").dbAbsensis;
 const ModelStat = require("../models").statusAbsensis;
 const bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
 
 const DaftarPengguna = async (req, res) => {
   try {
@@ -66,9 +67,20 @@ const LoginPengguna = async (req, res) => {
         messege: "Password Tidak Sama",
       });
     }
-
+    const token = jwt.sign(
+      {
+        id: dataUser.id,
+        username: dataUser.username,
+        role: dataUser.role,
+      },
+      process.env.JWT_ACCESS_TOKEN,
+      {
+        expiresIn: "1m",
+      }
+    );
     return res.json({
       messsege: `Anda Berhasil Login LASKARSEO App`,
+      token,
       dataUser,
     });
   } catch (error) {
