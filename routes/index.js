@@ -19,7 +19,7 @@ const schedule = require("node-schedule");
 const router = express.Router();
 schedule.scheduleJob(
   {
-    hour: 10,
+    hour: 8,
     minute: 10,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
@@ -30,22 +30,14 @@ schedule.scheduleJob(
 schedule.scheduleJob(
   {
     hour: 5,
-    minute: 15,
+    minute: 5,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
   DefaultAbsen
 );
 
-//  schedule.scheduleJob(rule, DefaultAbsen);
 
-// () => {
-//   var aestTime = new Date().toLocaleString("id", {timeZone: "Asia/Jakarta"});
-//   const date = Date();
-//   console.log('================================================');
-//   console.log(rule);
-//   console.log(aestTime);
-// };
 
 router.get("/", (req, res) => {
   return res.json({

@@ -93,22 +93,34 @@ const CekAbsen = async (req, res) => {
 const TelatAbsen = async (req, res) => {
   try {
     var time = new Date();
-
+    const cek = await ModelStat.findAll({
+      attributes: ["id", "idPengguna"],
+      where: { stat: "DEFAULT" },
+    });
+   
     const telat = await ModelStat.update(
       { stat: "NOT" },
       { where: { stat: "DEFAULT" } }
     );
 
+   
     await Promise.all(
-      telat.map(async (data) => {
-        console.log(data);
-        const baru = await ModelAbsensi.create({
-          absen: "TANPA KETERANGAN",
-          idPengguna: data.idPengguna,
-          keterangan: "",
-          tanggal: time,
-        });
-        console.log(baru);
+      cek.map(async (ere) => {
+        try {
+       
+          const baru = await ModelAbsensi.create({
+            absen: "TANPA KETERANGAN",
+            idPengguna: ere.id,
+            keterangan: "",
+            tanggal: time,
+          });
+          const pivotnya = await Pivot.create({
+            idPengguna: ere.id,
+            idAbsensi: baru.id,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       })
     );
     // await ModelStat.update({ stat: "NOT" }, { where: { stat: "DEFAULT" } });
