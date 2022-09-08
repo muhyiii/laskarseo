@@ -89,6 +89,7 @@ const LoginPengguna = async (req, res) => {
     res.status(403).json({
       status: "Gagal",
       messege: "Ada Kesalahan",
+      error,
     });
   }
 };
