@@ -70,9 +70,9 @@ const LoginPengguna = async (req, res) => {
     }
     const token = jwt.sign(
       {
-        id: dataUser.id,
-        username: dataUser.username,
-        role: dataUser.role,
+        id: dataUser?.id,
+        username: dataUser?.username,
+        role: dataUser?.role,
       },
       process.env.JWT_ACCESS_TOKEN,
       {
@@ -81,15 +81,15 @@ const LoginPengguna = async (req, res) => {
     );
     return res.json({
       messsege: `Anda Berhasil Login LASKARSEO App`,
-      token,
       dataUser,
+      token,
     });
   } catch (error) {
     console.log(error);
     res.status(403).json({
       status: "Gagal",
       messege: "Ada Kesalahan",
-      error : error,
+      error: error,
     });
   }
 };
