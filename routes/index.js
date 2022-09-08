@@ -20,7 +20,7 @@ const router = express.Router();
 schedule.scheduleJob(
   {
     hour: 8,
-    minute: 30,
+    minute: 45,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
@@ -30,7 +30,7 @@ schedule.scheduleJob(
 schedule.scheduleJob(
   {
     hour: 8,
-    minute: 35,
+    minute: 50,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
