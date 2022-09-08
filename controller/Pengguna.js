@@ -8,8 +8,8 @@ const DaftarPengguna = async (req, res) => {
   try {
     let body = req.body;
     if (
+      (body.username == "" && body.email == "") ||
       body.nama == "" ||
-      body.username == "" ||
       body.role == "" ||
       body.gender == ""
     ) {
@@ -22,6 +22,7 @@ const DaftarPengguna = async (req, res) => {
     const user = await ModelPengguna.create({
       nama: body.nama,
       username: body.username,
+      email: body.email,
       password: body.password,
       panggilan: "",
       role: body.role,
