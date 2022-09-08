@@ -2,6 +2,8 @@ const ModelPengguna = require("../models").dbPenggunas;
 const ModelAbsensi = require("../models").dbAbsensis;
 const ModelStat = require("../models").statusAbsensis;
 const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+dotenv.config();
 var jwt = require("jsonwebtoken");
 
 const DaftarPengguna = async (req, res) => {
