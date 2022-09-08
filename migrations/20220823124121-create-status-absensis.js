@@ -1,30 +1,30 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('statusAbsenses', {
+    await queryInterface.createTable("statusAbsenses", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       idPengguna: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       stat: {
-        type: Sequelize.ENUM("HADIR", "DEFAULT","IZIN"),
+        type: Sequelize.ENUM("HADIR", "DEFAULT", "IZIN", "NOT"),
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('statusAbsenses');
-  }
+    await queryInterface.dropTable("statusAbsenses");
+  },
 };

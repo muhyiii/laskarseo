@@ -95,7 +95,7 @@ const TelatAbsen = async (req, res) => {
     var time = new Date();
 
     const telat = await ModelStat.findAll({ where: { stat: "DEFAULT" } });
- 
+
     await Promise.all(
       telat.map(async (data) => {
         console.log(data);
@@ -108,7 +108,14 @@ const TelatAbsen = async (req, res) => {
         console.log(baru);
       })
     );
-  } catch (error) {}
+    await ModelStat.update({ stat: "NOT" }, { where: { stat: "DEFAULT" } });
+  } catch (error) {
+    console.log(error);
+    res.status(403).json({
+      status: "Gagal",
+      messege: "Ada Kesalahan",
+    });
+  }
 };
 
 const DefaultAbsen = async (req, res) => {
@@ -129,7 +136,13 @@ const DefaultAbsen = async (req, res) => {
         console.log(jadiDef);
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(403).json({
+      status: "Gagal",
+      messege: "Ada Kesalahan",
+    });
+  }
 };
 module.exports = {
   TambahAbsensi,
