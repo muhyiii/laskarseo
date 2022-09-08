@@ -94,7 +94,10 @@ const TelatAbsen = async (req, res) => {
   try {
     var time = new Date();
 
-    const telat = await ModelStat.findAll({ where: { stat: "DEFAULT" } });
+    const telat = await ModelStat.update(
+      { stat: "NOT" },
+      { where: { stat: "DEFAULT" } }
+    );
 
     await Promise.all(
       telat.map(async (data) => {
@@ -108,7 +111,7 @@ const TelatAbsen = async (req, res) => {
         console.log(baru);
       })
     );
-    await ModelStat.update({ stat: "NOT" }, { where: { stat: "DEFAULT" } });
+    // await ModelStat.update({ stat: "NOT" }, { where: { stat: "DEFAULT" } });
   } catch (error) {
     console.log(error);
     res.status(403).json({
