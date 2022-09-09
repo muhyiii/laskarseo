@@ -20,7 +20,7 @@ const router = express.Router();
 const telat = schedule.scheduleJob(
   {
     hour: 8,
-    minute: 19,
+    minute: 32,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
@@ -30,7 +30,7 @@ const telat = schedule.scheduleJob(
 const def = schedule.scheduleJob(
   {
     hour: 8,
-    minute:17 ,
+    minute:34 ,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
