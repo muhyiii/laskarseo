@@ -20,17 +20,17 @@ const router = express.Router();
 schedule.scheduleJob(
   {
     hour: 8,
-    minute: 38,
+    minute: 41,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
   TelatAbsen
 );
 
- schedule.scheduleJob(
+schedule.scheduleJob(
   {
     hour: 8,
-    minute: 340,
+    minute: 43,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
