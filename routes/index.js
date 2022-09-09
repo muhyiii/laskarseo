@@ -17,20 +17,20 @@ const validationMiddleware = require("../middleware/akunMiddleware");
 const { akunValidator } = require("../validator/akunValidator");
 const schedule = require("node-schedule");
 const router = express.Router();
-const telat = schedule.scheduleJob(
+schedule.scheduleJob(
   {
     hour: 8,
-    minute: 32,
+    minute: 38,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
   TelatAbsen
 );
 
-const def = schedule.scheduleJob(
+ schedule.scheduleJob(
   {
     hour: 8,
-    minute:34 ,
+    minute: 340,
     dayOfWeek: [5, new schedule.Range(1, 4)],
     tz: "Asia/Jakarta",
   },
