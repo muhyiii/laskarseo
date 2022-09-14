@@ -17,23 +17,20 @@ const validationMiddleware = require("../middleware/akunMiddleware");
 const { akunValidator } = require("../validator/akunValidator");
 const schedule = require("node-schedule");
 const router = express.Router();
-schedule.scheduleJob(
-  {
-    hour: 8,
-    minute: 10,
-    dayOfWeek: [5, new schedule.Range(1, 4)],
-    tz: "Asia/Jakarta",
-  },
-  TelatAbsen
-);
+
+const telat = new schedule.RecurrenceRule();
+telat.dayOfWeek = [ new schedule.Range(1, 5)];
+telat.hour = 6;
+telat.minute = 0;
+schedule.scheduleJob(telat, TelatAbsen);
+
+const depolt = new schedule.RecurrenceRule();
+depolt.dayOfWeek = [ new schedule.Range(1, 5)];
+depolt.hour = 8;
+depolt.minute = 10;
 
 schedule.scheduleJob(
-  {
-    hour: 5,
-    minute: 0,
-    dayOfWeek: [5, new schedule.Range(1, 4)],
-    tz: "Asia/Jakarta",
-  },
+  depolt,
   DefaultAbsen
 );
 
