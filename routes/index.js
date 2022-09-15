@@ -22,14 +22,14 @@ const router = express.Router();
 // telat.dayOfWeek = [1, 2, 3, 4, 5];
 // telat.hour = 10;
 // telat.minute = 15;
-const late = schedule.scheduleJob("20 11 * * 1-5", TelatAbsen);
+schedule.scheduleJob("20 11 * * 1-5", TelatAbsen);
 // late.job();
 
 // const depolt = new schedule.RecurrenceRule();
 // depolt.dayOfWeek = [1, 2, 3, 4, 5];
 // depolt.hour = 10;
 // depolt.minute = 20;
-const awal = schedule.scheduleJob('25 11 * * 1-5', DefaultAbsen);
+schedule.scheduleJob("25 11 * * 1-5", DefaultAbsen);
 // awal.job();
 
 router.get("/", (req, res) => {
