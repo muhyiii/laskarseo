@@ -23,14 +23,14 @@ const cron = require("node-cron");
 // telat.dayOfWeek = [1, 2, 3, 4, 5];
 // telat.hour = 10;
 // telat.minute = 15;
-cron.scheduleJob("15 14 * * 1-5", TelatAbsen);
+cron.schedule("15 14 * * 1-5", TelatAbsen);
 // late.job();
 
 // const depolt = new schedule.RecurrenceRule();
 // depolt.dayOfWeek = [1, 2, 3, 4, 5];
 // depolt.hour = 10;
 // depolt.minute = 20;
-cron.scheduleJob("20 14 * * 1-5", DefaultAbsen);
+cron.schedule("20 14 * * 1-5", DefaultAbsen);
 // awal.job();
 
 router.get("/", (req, res) => {
