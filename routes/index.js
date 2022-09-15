@@ -23,14 +23,14 @@ telat.dayOfWeek = [5, new schedule.Range(1, 4)];
 telat.hour = 8;
 telat.minute = 55;
 const late = schedule.scheduleJob(telat, TelatAbsen);
-late.runOnDate()
+late.schedule()
 
 const depolt = schedule.RecurrenceRule();
 depolt.dayOfWeek = [5, new schedule.Range(1, 4)];
 depolt.hour = 9;
 depolt.minute  =0;
 const awal = schedule.scheduleJob(depolt, DefaultAbsen);
-awal.runOnDate()
+awal.schedule()
 
 router.get("/", (req, res) => {
   return res.json({
