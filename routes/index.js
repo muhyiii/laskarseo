@@ -19,15 +19,15 @@ const schedule = require("node-schedule");
 const router = express.Router();
 
 const telat = new schedule.RecurrenceRule();
-telat.dayOfWeek = [ new schedule.Range(1, 5)];
-telat.hour = 6;
-telat.minute = 0;
+telat.dayOfWeek = [5, new schedule.Range(1,4)];
+telat.hour = 8;
+telat.minute = 30;
 schedule.scheduleJob(telat, TelatAbsen);
 
 const depolt = new schedule.RecurrenceRule();
-depolt.dayOfWeek = [ new schedule.Range(1, 5)];
+depolt.dayOfWeek = [ 5,new schedule.Range(1, 4)];
 depolt.hour = 8;
-depolt.minute = 10;
+depolt.minute = 35;
 
 schedule.scheduleJob(
   depolt,
