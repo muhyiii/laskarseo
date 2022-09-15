@@ -21,14 +21,14 @@ const router = express.Router();
 const telat = new schedule.RecurrenceRule();
 telat.dayOfWeek = [1, 2, 3, 4, 5];
 telat.hour = 9;
-telat.minute = 5;
+telat.minute = 15;
 schedule.scheduleJob(telat, TelatAbsen);
 // late.schedule()
 
 const depolt =new schedule.RecurrenceRule();
 depolt.dayOfWeek = [1, 2, 3, 4, 5];
 depolt.hour = 9;
-depolt.minute = 10;
+depolt.minute = 20;
  schedule.scheduleJob(depolt, DefaultAbsen);
 // awal.schedule()
 
