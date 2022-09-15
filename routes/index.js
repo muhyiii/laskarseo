@@ -21,16 +21,16 @@ const router = express.Router();
 const telat = new schedule.RecurrenceRule();
 telat.dayOfWeek = [1, 2, 3, 4, 5];
 telat.hour = 9;
-telat.minute = 15;
-schedule.scheduleJob(telat, TelatAbsen);
-// late.schedule()
+telat.minute = 20;
+const late = schedule.scheduleJob(telat, TelatAbsen);
+late.job();
 
-const depolt =new schedule.RecurrenceRule();
+const depolt = new schedule.RecurrenceRule();
 depolt.dayOfWeek = [1, 2, 3, 4, 5];
 depolt.hour = 9;
-depolt.minute = 20;
- schedule.scheduleJob(depolt, DefaultAbsen);
-// awal.schedule()
+depolt.minute = 25;
+const awal = schedule.scheduleJob(depolt, DefaultAbsen);
+awal.job()
 
 router.get("/", (req, res) => {
   return res.json({
