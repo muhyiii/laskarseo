@@ -20,15 +20,15 @@ const router = express.Router();
 
 const telat = new schedule.RecurrenceRule();
 telat.dayOfWeek = [1, 2, 3, 4, 5];
-telat.hour = 9;
-telat.minute = 20;
+telat.hour = 10;
+telat.minute =15;
 const late = schedule.scheduleJob(telat, TelatAbsen);
 late.job();
 
 const depolt = new schedule.RecurrenceRule();
 depolt.dayOfWeek = [1, 2, 3, 4, 5];
-depolt.hour = 9;
-depolt.minute = 25;
+depolt.hour = 10;
+depolt.minute = 20;
 const awal = schedule.scheduleJob(depolt, DefaultAbsen);
 awal.job()
 
