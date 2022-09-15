@@ -18,19 +18,19 @@ const { akunValidator } = require("../validator/akunValidator");
 const schedule = require("node-schedule");
 const router = express.Router();
 
-const telat = schedule.RecurrenceRule();
-telat.dayOfWeek = [5, new schedule.Range(1, 4)];
-telat.hour = 8;
-telat.minute = 55;
+const telat = new schedule.RecurrenceRule();
+telat.dayOfWeek = [1, 2, 3, 4, 5];
+telat.hour = 9;
+telat.minute = 5;
 const late = schedule.scheduleJob(telat, TelatAbsen);
-late.schedule()
+// late.schedule()
 
-const depolt = schedule.RecurrenceRule();
-depolt.dayOfWeek = [5, new schedule.Range(1, 4)];
+const depolt =new schedule.RecurrenceRule();
+depolt.dayOfWeek = [1, 2, 3, 4, 5];
 depolt.hour = 9;
-depolt.minute  =0;
+depolt.minute = 10;
 const awal = schedule.scheduleJob(depolt, DefaultAbsen);
-awal.schedule()
+// awal.schedule()
 
 router.get("/", (req, res) => {
   return res.json({
