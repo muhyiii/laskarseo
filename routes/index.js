@@ -19,20 +19,16 @@ const schedule = require("node-schedule");
 const router = express.Router();
 
 const telat = new schedule.RecurrenceRule();
-telat.dayOfWeek = [5, new schedule.Range(1,4)];
+telat.dayOfWeek = [5, new schedule.Range(1, 4)];
 telat.hour = 8;
-telat.minute = 30;
-schedule.scheduleJob(telat, TelatAbsen);
+telat.minute = 35;
+const late = schedule.scheduleJob(telat, TelatAbsen);
 
 const depolt = new schedule.RecurrenceRule();
-depolt.dayOfWeek = [ 5,new schedule.Range(1, 4)];
+depolt.dayOfWeek = [5, new schedule.Range(1, 4)];
 depolt.hour = 8;
-depolt.minute = 35;
-
-schedule.scheduleJob(
-  depolt,
-  DefaultAbsen
-);
+depolt.minute = 40;
+const awal = schedule.scheduleJob(depolt, DefaultAbsen);
 
 router.get("/", (req, res) => {
   return res.json({
