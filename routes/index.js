@@ -23,21 +23,21 @@ const cron = require("node-cron");
 // telat.dayOfWeek = [1, 2, 3, 4, 5];
 // telat.hour = 10;
 // telat.minute = 15;
-cron.schedule("10 8 * * 1-5", TelatAbsen, {
+const late = cron.schedule("20 9 * * 1-5", TelatAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
-// late.job();
+late.start();
 
 // const depolt = new schedule.RecurrenceRule();
 // depolt.dayOfWeek = [1, 2, 3, 4, 5];
 // depolt.hour = 10;
 // depolt.minute = 20;
-cron.schedule("0 5 * * 1-5", DefaultAbsen, {
+const awal = cron.schedule("30 9 * * 1-5", DefaultAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
-// awal.job();
+awal.stop();
 
 router.get("/", (req, res) => {
   return res.json({
