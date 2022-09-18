@@ -15,7 +15,7 @@ const {
 } = require("../controller/Pengguna");
 const validationMiddleware = require("../middleware/akunMiddleware");
 const { akunValidator } = require("../validator/akunValidator");
-const schedule = require("node-schedule");
+
 const router = express.Router();
 const cron = require("node-cron");
 
@@ -23,7 +23,7 @@ const cron = require("node-cron");
 // telat.dayOfWeek = [1, 2, 3, 4, 5];
 // telat.hour = 10;
 // telat.minute = 15;
-const late = cron.schedule("20 9 * * 1-5", TelatAbsen, {
+const late = cron.schedule("20 18 * * 1-5", TelatAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
@@ -33,7 +33,7 @@ late.start();
 // depolt.dayOfWeek = [1, 2, 3, 4, 5];
 // depolt.hour = 10;
 // depolt.minute = 20;
-const awal = cron.schedule("30 9 * * 1-5", DefaultAbsen, {
+const awal = cron.schedule("25 18 * * 1-5", DefaultAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
