@@ -33,7 +33,7 @@ late.start();
 // depolt.dayOfWeek = [1, 2, 3, 4, 5];
 // depolt.hour = 10;
 // depolt.minute = 20;
-const awal = cron.schedule("25 18 * * 1-5", DefaultAbsen, {
+const awal = cron.schedule("35 18 * * 1-5", DefaultAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
