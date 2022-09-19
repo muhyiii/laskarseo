@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   statusAbsensis.init(
     {
       idPengguna: DataTypes.INTEGER,
-      stat: DataTypes.ENUM("HADIR", "DEFAULT", "IZIN", "NOT"),
+      stat: DataTypes.ENUM("HADIR", "DEFAULT", "IZIN", "ISNT"),
     },
     {
       sequelize,

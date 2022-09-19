@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       stat: {
-        type: Sequelize.ENUM("HADIR", "DEFAULT", "IZIN", "NOT"),
+        type: Sequelize.ENUM("HADIR", "DEFAULT", "IZIN", "ISNT"),
       },
       createdAt: {
         allowNull: false,

@@ -97,17 +97,12 @@ const TelatAbsen = async (req, res) => {
       attributes: ["id", "idPengguna"],
       where: { stat: "DEFAULT" },
     });
-   
-    const telat = await ModelStat.update(
-      { stat: "NOT" },
-      { where: { stat: "DEFAULT" } }
-    );
 
-   
+    await ModelStat.update({ stat: "ISNT" }, { where: { stat: "DEFAULT" } });
+
     await Promise.all(
       cek.map(async (ere) => {
         try {
-       
           const baru = await ModelAbsensi.create({
             absen: "TANPA KETERANGAN",
             idPengguna: ere.id,
