@@ -92,14 +92,14 @@ const CekAbsen = async (req, res) => {
 
 const TelatAbsen = async (req, res) => {
   try {
-    var time = new Date();
+    const time = new Date();
     const cek = await ModelStat.findAll({
       attributes: ["id", "idPengguna"],
       where: { stat: "DEFAULT" },
     });
 
     await Promise.all(
-       ModelStat.update({ stat: "ALPHA" }, { where: { stat: "DEFAULT" } })
+      await ModelStat.update({ stat: "ALPHA" }, { where: { stat: "DEFAULT" } })
     );
 
     await Promise.all(
