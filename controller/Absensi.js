@@ -99,7 +99,7 @@ const TelatAbsen = async (req, res) => {
     });
 
     await Promise.all(
-      await ModelStat.update({ stat: "ISNT" }, { where: { stat: "DEFAULT" } })
+       ModelStat.update({ stat: "ALPHA" }, { where: { stat: "DEFAULT" } })
     );
 
     await Promise.all(
