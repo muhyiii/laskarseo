@@ -98,7 +98,9 @@ const TelatAbsen = async (req, res) => {
       where: { stat: "DEFAULT" },
     });
 
-    await ModelStat.update({ stat: "ISNT" }, { where: { stat: "DEFAULT" } });
+    await Promise.all(
+      await ModelStat.update({ stat: "ISNT" }, { where: { stat: "DEFAULT" } })
+    );
 
     await Promise.all(
       cek.map(async (ere) => {
