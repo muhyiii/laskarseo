@@ -23,7 +23,7 @@ const cron = require("node-cron");
 // telat.dayOfWeek = [1, 2, 3, 4, 5];
 // telat.hour = 10;
 // telat.minute = 
-cron.schedule("0 8 * * 1-5", TelatAbsen, {
+cron.schedule("10 8 * * 1-5", TelatAbsen, {
   scheduled: true,
   timezone: "Asia/Jakarta",
 });
